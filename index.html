@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV 計算機 | RM93</title>
 
-    <!-- 用於 PWA / 桌面捷徑 -->
     <link rel="icon" type="image/png" href="./icon.png">
     <link rel="apple-touch-icon" href="./icon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,7 +17,7 @@
         <h1>CV 計算機 | RM93</h1>
 
         <div class="input-group">
-            <label for="numbers">輸入數值（逗號或空格分隔）</label>
+            <label for="numbers">🔢 輸入數值（逗號或空格分隔）</label>
             <textarea id="numbers" placeholder="例如：10 12 11 9 或 10, 12, 11, 9"></textarea>
         </div>
 
@@ -35,26 +35,30 @@
             </div>
         </div>
 
-        <div class="input-group">
+        <div class="input-group input-decimal">
             <label for="decimal">小數位數</label>
             <input type="number" id="decimal" min="0" max="10" value="2">
         </div>
 
-        <button id="calcBtn">計算</button>
+        <button id="calcBtn">開始計算</button>
         <button id="clearBtn" class="clear-btn">清除輸入內容</button>
 
         <div id="result" class="result hidden">
             <h2>計算結果</h2>
 
-            <div class="card-grid">
-                <div class="card"><strong>平均值</strong><p id="mean"></p></div>
-                <div class="card"><strong>標準差</strong><p id="std"></p></div>
-                <div class="card"><strong>變異係數 (CV)</strong><p id="cv"></p></div>
+            <div class="main-cv-card">
+                <strong>變異係數 (CV)</strong>
+                <p id="cv" class="cv-value"></p>
             </div>
 
-            <h3 style="margin-top: 20px; color:#4a90e2;">附加統計資料</h3>
+            <div class="card-grid main-stats">
+                <div class="card"><strong>平均值</strong><p id="mean"></p></div>
+                <div class="card"><strong>標準差</strong><p id="std"></p></div>
+            </div>
 
-            <div class="card-grid">
+            <h3 class="sub-title">附加統計資料</h3>
+
+            <div class="card-grid secondary-stats">
                 <div class="card"><strong>樣本數</strong><p id="count"></p></div>
                 <div class="card"><strong>最大值</strong><p id="max"></p></div>
                 <div class="card"><strong>最小值</strong><p id="min"></p></div>

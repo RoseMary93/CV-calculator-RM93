@@ -1,119 +1,216 @@
-/* style.css */
+/* style.css - 可愛、簡單清楚、淺藍色調風格 */
+
+/* 淺藍色調定義 */
+:root {
+    --light-blue: #cceeff; /* 極淺藍 (背景) */
+    --main-blue: #66c2ff; /* 主題藍 (按鈕, 標題) */
+    --darker-blue: #4aa7f5; /* 深一點的藍 (按鈕 hover) */
+    --border-blue: #a3e0ff; /* 邊框藍 */
+    --text-color: #333333; /* 主要文字顏色 */
+    --secondary-text-color: #555555; /* 次要文字顏色 */
+    --accent-color: #ff99cc; /* 一點點粉色點綴 (可選) */
+}
+
 body {
-    background: #e7f4ff;
-    font-family: "Segoe UI", sans-serif;
+    background: var(--light-blue);
+    /* 引入可愛風格的字體 */
+    font-family: 'Noto Sans TC', sans-serif, "Segoe UI";
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    line-height: 1.6;
 }
 
 .container {
     max-width: 500px;
     margin: 40px auto;
-    padding: 25px;
+    padding: 30px;
     background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 25px; /* 更大的圓角，增加可愛感 */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* 柔和的陰影 */
 }
 
 h1 {
     text-align: center;
-    color: #4a90e2;
-    margin-bottom: 20px;
+    color: var(--main-blue);
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: 700;
 }
 
-.input-group {
+h2 {
+    color: var(--main-blue);
+    text-align: center;
     margin-bottom: 15px;
 }
 
+.sub-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--darker-blue);
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 2px solid var(--border-blue);
+    padding-bottom: 5px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
 label {
-    font-weight: bold;
-    color: #333;
+    font-weight: 700;
+    color: var(--text-color);
+    display: block; /* 讓 label 佔滿一行，更清晰 */
+    margin-bottom: 5px;
 }
 
 textarea, input[type="number"] {
     width: 100%;
-    box-sizing: border-box;   /* 🔥 避免 padding 造成溢出 */
-    padding: 10px;
-    margin-top: 8px;
-    border: 2px solid #b9dfff;
-    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-top: 5px;
+    border: 3px solid var(--border-blue); /* 邊框更粗，更顯眼 */
+    border-radius: 15px; /* 可愛圓角 */
     font-size: 16px;
+    color: var(--text-color);
     resize: vertical;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
+
+textarea:focus, input[type="number"]:focus {
+    border-color: var(--main-blue);
+    box-shadow: 0 0 8px rgba(102, 194, 255, 0.5); /* 聚焦時有藍色光暈 */
+    outline: none;
+}
+
+/* 小數位數輸入框寬度調整 */
+.input-decimal input[type="number"] {
+    max-width: 100px; 
+}
+
 
 .radio-group {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     margin-top: 10px;
 }
 
+.radio-group label {
+    font-weight: 400; /* 次要文字不用太粗 */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* 按鈕風格 */
 button {
     width: 100%;
-    padding: 12px;
-    background: #5ab0f5;
+    padding: 15px;
+    background: var(--main-blue);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 18px; /* 大圓角按鈕 */
     font-size: 18px;
+    font-weight: 700;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 12px;
+    transition: background 0.3s, transform 0.1s;
+    box-shadow: 0 4px 0 var(--darker-blue); /* 3D 效果 */
 }
 
 button:hover {
-    background: #4a90e2;
+    background: var(--darker-blue);
+    box-shadow: 0 2px 0 var(--darker-blue);
+    transform: translateY(2px); /* 點擊下壓效果 */
 }
 
+.clear-btn {
+    background: #cccccc;
+    box-shadow: 0 4px 0 #999999;
+}
+
+.clear-btn:hover {
+    background: #b5b5b5;
+    box-shadow: 0 2px 0 #999999;
+}
+
+/* 結果區塊 */
 .result {
-    margin-top: 25px;
-    padding: 15px;
-    background: #f0f8ff;
-    border-radius: 15px;
+    margin-top: 30px;
+    padding: 20px;
+    background: #ffffff; /* 使用白色背景讓卡片更突出 */
+    border-radius: 20px;
+    border: 3px solid var(--border-blue); /* 淺藍色邊框 */
+    box-shadow: inset 0 0 10px rgba(171, 222, 255, 0.3); /* 輕微內陰影 */
 }
 
 .hidden {
     display: none;
 }
 
-.result h2 {
-    color: #4a90e2;
-}
-
-/* 原有 CSS 不動，只新增以下 */
-
-.clear-btn {
-    width: 100%;
-    padding: 12px;
-    background: #cccccc;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 8px;
-}
-
-.clear-btn:hover {
-    background: #b5b5b5;
-}
-
+/* 卡片網格 */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 15px;
     margin-top: 10px;
 }
 
+.secondary-stats {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 讓四個卡片在小螢幕時能調整 */
+}
+
+/* 單個卡片樣式 */
 .card {
-    background: #ffffff;
-    padding: 12px;
-    border-radius: 12px;
-    border: 2px solid #d8ecff;
+    background: #f0f8ff; /* 卡片使用極淺藍背景 */
+    padding: 15px 10px;
+    border-radius: 15px;
+    border: 1px solid var(--border-blue);
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.card strong {
+    color: var(--darker-blue);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.card p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* 主要 CV 卡片獨立設計 */
+.main-cv-card {
+    background: var(--main-blue); /* 藍色背景凸顯主要結果 */
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 150, 255, 0.2);
+}
+
+.main-cv-card strong {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.cv-value {
+    font-size: 36px !important;
+    font-weight: 900 !important;
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
 .footer-note {
     text-align: center;
-    font-size: 14px;
-    color: #555;
+    font-size: 12px;
+    color: var(--secondary-text-color);
     padding: 15px 0 25px 0;
 }
