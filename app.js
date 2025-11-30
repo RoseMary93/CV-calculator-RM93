@@ -1,41 +1,42 @@
-document.getElementById("calcBtn").addEventListener("click", () => {
-    const decimal = parseInt(document.getElementById("decimal").value);
-    const rawInput = document.getElementById("numbers").value.trim();
+// app.js
 
-    if (!rawInput) return alert("請輸入數值");
+document.getElementById("calcBtn").addEventListener("click", function () {
+    const raw = document.getElementById("numbers").value.trim();
+    const decimal = parseInt(document.getElementById("decimal").value) || 2;
 
-    // 支援逗號與空格分隔
-    const numbers = rawInput
+    // 支援空格、逗號、混合分隔
+    const values = raw
         .split(/[\s,]+/)
-        .map(n => parseFloat(n))
+        .map(Number)
         .filter(n => !isNaN(n));
 
-    if (numbers.length === 0) return alert("請輸入正確的數字格式");
-
-    const mean = numbers.reduce((a, b) => a + b, 0) / numbers.length;
-
-    const stdType = document.querySelector("input[name='stdType']:checked").value;
-
-    let variance;
-
-    if (stdType === "sample") {
-        // 樣本變異數 (n-1)
-        const avg = mean;
-        variance = numbers.reduce((sum, val) => sum + Math.pow(val - avg, 2), 0) / (numbers.length - 1);
-    } else {
-        // 母體變異數 (n)
-        const avg = mean;
-        variance = numbers.reduce((sum, val) => sum + Math.pow(val - avg, 2), 0) / numbers.length;
+    if (values.length === 0) {
+        alert("請輸入至少一個有效數字！");
+        return;
     }
 
-    const sd = Math.sqrt(variance);
+    // 平均
+    const mean = values.reduce((a, b) => a + b, 0) / values.length;
 
-    // CV = SD / Mean (顯示為百分比)
-    const cv = (sd / mean) * 100;
+    // 標準差（樣本 or 母體）
+    const stdType = document.querySelector('input[name="stdType"]:checked').value;
+    const meanDiffSq = values.map(n => Math.pow(n - mean, 2));
+    const divisor = stdType === "sample" ? values.length - 1 : values.length;
 
-    document.getElementById("mean").textContent = mean.toFixed(decimal);
-    document.getElementById("sd").textContent = sd.toFixed(decimal);
-    document.getElementById("cv").textContent = cv.toFixed(decimal) + "%";
+    const std = Math.sqrt(meanDiffSq.reduce((a, b) => a + b, 0) / divisor);
+
+    // CV（百分比型態）
+    const cv = (std / mean) * 100;
+
+    // 輸出結果
+    document.getElementById("mean").textContent =
+        `平均 (Mean)：${mean.toFixed(decimal)}`;
+
+    document.getElementById("std").textContent =
+        `標準差 (SD)：${std.toFixed(decimal)}`;
+
+    document.getElementById("cv").textContent =
+        `變異係數 (CV)：${cv.toFixed(decimal)}%`;
 
     document.getElementById("result").classList.remove("hidden");
 });

@@ -10,13 +10,9 @@
     <div class="container">
         <h1>CV 計算機 | RM93</h1>
 
-        <div class="input-row">
-            <div class="input-group">
-                <label for="numbers">輸入數值（逗號或空格分隔）</label>
-                <textarea id="numbers" placeholder="例如：10 12 11 9 或 10, 12, 11, 9"></textarea>
-            </div>
-
-            <button id="calcBtn">計算</button>
+        <div class="input-group">
+            <label for="numbers">輸入數值（逗號或空格分隔）</label>
+            <textarea id="numbers" placeholder="例如：10 12 11 9 或 10, 12, 11, 9"></textarea>
         </div>
 
         <div class="input-group">
@@ -38,11 +34,13 @@
             <input type="number" id="decimal" min="0" max="10" value="2">
         </div>
 
+        <button id="calcBtn">計算</button>
+
         <div id="result" class="result hidden">
             <h2>計算結果</h2>
-            <p><strong>平均 (Mean)：</strong><span id="mean"></span></p>
-            <p><strong>標準差 (SD)：</strong><span id="sd"></span></p>
-            <p><strong>變異係數 (CV)：</strong><span id="cv"></span></p>
+            <p id="mean"></p>
+            <p id="std"></p>
+            <p id="cv"></p>
         </div>
     </div>
 

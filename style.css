@@ -32,6 +32,7 @@ label {
 
 textarea, input[type="number"] {
     width: 100%;
+    box-sizing: border-box;   /* 🔥 避免 padding 造成溢出 */
     padding: 10px;
     margin-top: 8px;
     border: 2px solid #b9dfff;
